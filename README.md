@@ -13,7 +13,7 @@ The simplest autoencoder is a feedforward neural network with the same number of
 <br />
 
 <p align="center">
-  <img width="550" height="295" src="https://reyhaneaskari.github.io/Reyhane%20Askari_files/ae.png">
+  <img width="550" height="295" src="/images/ae.png">
   <br />
   <em>Figure 1 - Autoencoder (Reyhane Askari)</em>
 </p>
