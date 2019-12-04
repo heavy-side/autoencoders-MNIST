@@ -29,6 +29,15 @@ After training, the autoencoder should have learned to map the input to the outp
 
 An obvious constraint is to limit the number of hidden neurons. As long as the number of hidden neurons is less than the number of input and output neurons, the encoder will learn to compress the input and the decoder will learn to reconstruct the output from a compressed representation. The autoencoder will be able to capture the underlying structure in the data through the latent representation given by the neurons in the hidden layer. These low-dimensional representation are similar to results from PCA.
 
+A SVD is performed on the MNIST training set, and the singular values are shown in Figure 2. Note that this is show on a log scale because the singular values become increasingly smaller. A useful rule of thumb is to retain enough singular values for a percentage of the total energy in Σ, defined as the sum of the squared singular values. Different autoencoders are constructed with a varying number of neurons in the hidden layer. 
+
+<p align="center">
+  <img width="550" height="295" src="/images/svd.png">
+  <br />
+  <em>Figure 2 - Singular values for MNIST training set in decreasing order</em>
+</p>
+
+<br />
 <br />
 
 ### Sparse Representations (SAE)
