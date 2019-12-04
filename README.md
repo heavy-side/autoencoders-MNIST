@@ -1,6 +1,6 @@
 # Neural Networks with MNIST 
 
-Modified National Institute of Standards and Technology (MNIST) is a great dataset for machine learning. It is a dataset of grayscale handwritten digits that have been normalized and centered on a 28x28 pixel field. The gray levels are a result of the anti-aliasing technique used by the normalization algorithm. The dataset contains a labelled training set of 60,000 examples, and a labelled test set of 10,000 examples. 
+Modified National Institute of Standards and Technology (MNIST) is a dataset of grayscale handwritten digits that have been normalized and centered on a 28x28 pixel field. The gray levels are a result of the anti-aliasing technique used by the normalization algorithm. The dataset contains a labelled training set of 60000 examples, and a labelled test set of 10000 examples. 
 
 <br />
 
