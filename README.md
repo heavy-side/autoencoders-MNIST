@@ -2,13 +2,9 @@
 
 Modified National Institute of Standards and Technology (MNIST) is a dataset of grayscale handwritten digits that have been normalized and centered on a 28x28 pixel field. The gray levels are a result of the anti-aliasing technique used by the normalization algorithm. The dataset contains a labelled training set of 60000 examples, and a labelled test set of 10000 examples. 
 
-<br />
-
 ## Autoencoders
 
-An autoencoder is an unsupervised learning algorithm that aims to create an output that is equal to the input using backpropagation. An autoencoder consists of two parts: an encoder and a decoder. The encoder maps the input to a hidden layer of neurons and the decoder reconstructs the output using the information from that hidden layer. This basic neural network structure is equivalent to a multilayer perceptron.
-
-The simplest autoencoder is a feedforward neural network with the same number of input and output neurons. The weights are initialized randomly and are trained through backpropagation with respect to some cost function. In this case, we want the output to match the input. Therefore, a good cost function will minimize the difference between the input and the output. 
+An autoencoder is an unsupervised learning algorithm that aims to create an output that is equivalent to the input. An autoencoder consists of two parts: an encoder and a decoder. The encoder maps the input to a hidden layer of neurons and the decoder reconstructs the output using the information from that hidden layer. This basic neural network structure is equivalent to a multilayer perceptron. The simplest autoencoder is a feedforward neural network with the same number of input and output neurons. The weights are initialized randomly and are trained through backpropagation with respect to some cost function. In this case, we want the output to match the input. Therefore, a good cost function will minimize the difference between the input and the output. 
 
 <br />
 
@@ -22,8 +18,6 @@ The simplest autoencoder is a feedforward neural network with the same number of
 <br />
 
 After training, the autoencoder should have learned to map the input to the output. Although it seems trivial to learn this identity mapping, placing constraints on the network can reveal the underlying structure of the unlabelled training dataset. 
-
-<br />
 
 ### Dimensionality Reduction
 
