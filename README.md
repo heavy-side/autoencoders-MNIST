@@ -28,17 +28,18 @@ A SVD is performed on the MNIST training set, and the singular values are shown 
 <p align="center">
   <img width="550" height="295" src="/images/svd.png">
   <br />
-  <em>Figure 2 - Singular values for MNIST training set in decreasing order</em>
+  <em>Figure 2 - Singular values for MNIST training set in decreasing order. Certain values of varying energy have been chosen to study the effect of different number of hidden neurons. Energy is defined here as the sum of the square of all singular values.</em>
 </p>
-<br />
 <p align="center">
-  <img width="960" height="540" src="/images/svd_study.png">
+  <img width="800" height="282" src="/images/svd_study.png">
   <br />
-  <em>Figure 2 - Singular values for MNIST training set in decreasing order</em>
+  <em>Figure 3 - (Right) Ground truths from dataset. (Left) Autoencoder outputs with varying number of hidden neurons. Columns show examples after 1, 10, 20, and 100 epochs of training with a batch size of 200 images. Rows show examples with 9, 46, 85, and 224 hidden neurons respectively. </em>
+<br />
+<br />
+<br />
 </p>
 
-<br />
-<br />
+Clearly increasing the number of neurons in the hidden layer causes the network to learn more features, allowing better reconstructions. Because adding neurons significantly increases the required computation and memory, adding layers of neurons is preferred over simply increasing the number of neurons on a single layer. Deep Learning refers to the subset of Machine Learning that uses networks with many hidden layers resulting in a deep neural network.
 
 ### Sparse Representations (SAE)
 
