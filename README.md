@@ -39,9 +39,11 @@ A SVD is performed on the MNIST training set, and the singular values are shown 
 <br />
 </p>
 
-Clearly increasing the number of neurons in the hidden layer causes the network to learn more features, allowing better reconstructions. Because adding neurons significantly increases the required computation and memory, adding layers of neurons is preferred over simply increasing the number of neurons on a single layer. Deep Learning refers to the subset of Machine Learning that uses networks with many hidden layers resulting in a deep neural network.
+Increasing the number of neurons in the hidden layer causes the network to learn more features, allowing better reconstructions. However, if the number of neurons is greater than or equal to the number of input and output neurons, the network can learn to simply copy the input and pass the information through. Regularization can be employed to combat this problem and prevent overfitting to the training dataset.
 
 ### Sparse Representations (SAE)
+
+An alternative method to prevent the network from learning to copy with input without constraining the number of neurons is to reularize the activations of the hidden neurons. This encourages the network to learn encodings and decodings that rely only small activation from the hidden neurons. When the number of hidden neurons is large, the network can learn to selectively activate different regions depending on the input. This forces the network to relate a small number of neurons to underlying structures within the data. This constraint can be enforced by adding an activation penalty to the cost function.
 
 ### Denoising (DAE)
 
