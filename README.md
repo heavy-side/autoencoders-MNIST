@@ -14,9 +14,6 @@ An autoencoder is an unsupervised learning algorithm that aims to create an outp
   <em>Figure 1 - Autoencoder (Reyhane Askari)</em>
 </p>
 
-<br />
-<br />
-
 After training, the autoencoder should have learned to map the input to the output. Although it seems trivial to learn this identity mapping, placing constraints on the network can reveal the underlying structure of the unlabelled training dataset. 
 
 ### Dimensionality Reduction
@@ -26,11 +23,12 @@ An obvious constraint is to limit the number of hidden neurons. As long as the n
 A SVD is performed on the MNIST training set, and the singular values are shown in **Figure 2**. Note that this is shown on a log scale because the singular values become increasingly small. A useful rule of thumb is to retain enough singular values for a percentage of the total energy in Σ, defined as the sum of the squared singular values. Different autoencoders are constructed with a varying number of neurons in the hidden layer and some visual results are shown in **Figure 3**.
 
 <p align="center">
+  <br />
   <img width="550" height="295" src="/images/svd.png">
   <br />
   <em>Figure 2 - Singular values for MNIST training set in decreasing order. Certain values of varying energy have been chosen to study the effect of different number of hidden neurons. Energy is defined here as the sum of the square of all singular values.</em>
-</p>
-<p align="center">
+  <br />
+  <br />
   <img width="800" height="282" src="/images/svd_study.png">
   <br />
   <em>Figure 3 - (Right) Ground truths from dataset. (Left) Autoencoder outputs with varying number of hidden neurons. Columns show examples after 1, 10, 20, and 100 epochs of training with a batch size of 200 images. Rows show examples with 9, 46, 85, and 224 hidden neurons respectively. </em>
