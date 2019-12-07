@@ -48,7 +48,7 @@ An alternative method to prevent the network from learning to copy with input wi
   <img width="350" height="197" src="/images/sae_study.png">
   <br />
   <br />
-  <em>Figure 4 - (Row 1) Regular autoencoder weights without sparsity constraint. (Row 2) Sparse autoencoder with L1 constraint. (Row 3) Sparse autoencoder with KL Divergence constraint. Networks shown after 100 epochs of training with minibatch size of 200. </em>
+  <em>Figure 4 - (Row 1) Regular autoencoder weights without sparsity constraint. (Row 2) Sparse autoencoder with L1 constraint. (Row 3) Sparse autoencoder with KL Divergence constraint. </em>
   <br />
   <br />
   <br />
