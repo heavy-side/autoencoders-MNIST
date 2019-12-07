@@ -13,29 +13,9 @@ import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 import matplotlib.pyplot as pyplot
 
-root = './data'
-if not os.path.exists(root):
-	os.mkdir(root)
-
-batch_size = 200
-num_epochs = 100
-learning_rate = 1e-3
-hidden_neurons = 300
-alpha = 0.01 #normalization effect
-beta = 0.001 #kl divergence effect
-p = 0.05 #sparsity parameter   
-
-test_path = './sae'
-if not os.path.exists(test_path):
-	os.mkdir(test_path)
-
-transform = transforms.Compose([transforms.ToTensor()]) #convert to tensor
-train_set = datasets.MNIST(root=root, train=True, transform=transform, download=True) 
-train_loader = torch.utils.data.DataLoader(dataset=train_set, batch_size=batch_size, shuffle=True)
-
-class ae(nn.Module):
+class sae(nn.Module):
     def __init__(self, inputs, hidden):
-        super(ae, self).__init__()
+        super(sae, self).__init__()
 
         self.encoder = nn.Sequential(
             nn.Linear(inputs, hidden),
@@ -49,62 +29,94 @@ class ae(nn.Module):
         decoded = self.decoder(encoded)
         return decoded, encoded
 
-num_points = math.ceil(60000/batch_size)*num_epochs #number of epochs X number of batches
-trainloss = numpy.zeros(num_points)
-scaled_epoch = numpy.arange(0, num_epochs, num_epochs/num_points)
-point_count = 0
+def main():
 
-model = ae(28*28, hidden_neurons)
-p = torch.tensor(p)
-if torch.cuda.is_available():
-    model = model.cuda()
-    p = p.cuda()
-optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=1e-5)
+    batch_size = 200
+    num_epochs = 200
+    learning_rate = 1e-3
+    hidden_neurons = 300
+    alpha = 0.01 #normalization effect
+    beta = 0.001 #kl divergence effect
+    p = 0.02 #sparsity parameter   
 
-for epoch in range(num_epochs):
-    for data in train_loader:
-        img, _ = data
-        img = img.view(img.size(0), -1) #matrix rows are different inputs
-        img = Variable(img)
-        if torch.cuda.is_available():
-            img = img.cuda()
+    test_path = './ae'
+    root = './data'
 
-        # Forward Path
-        out, hid = model(img)
-        mse = torch.mean(img.sub(out)**2) #mean squared error
-        l1 = torch.mean(torch.mean(hid.abs(), dim=0, keepdim=True)) #l1 regularization   
-        rh = torch.mean(hid, dim=0, keepdim=True) #expectations for KL divergence
-        kldiv = torch.sum(p*torch.log(torch.div(p,rh))) + torch.sum((1-p)*torch.log(torch.div((1-p),(1-rh)))) #KL divergences
-        #loss = mse + alpha*l1
-        loss = mse + beta*kldiv
+    model = ae(28*28, hidden_neurons)
 
-        # Backward Path
-        optimizer.zero_grad() #need to reset optimizer values
-        loss.backward()
-        optimizer.step()
+    if not os.path.exists(test_path):
+        os.mkdir(test_path)
 
-        trainloss[point_count] = loss.item() #store loss values for later
-        point_count = point_count + 1
+    if not os.path.exists(root):
+        os.mkdir(root)
         
-    print('[{}/{}]:  loss:{:.4f}'.format(epoch + 1, num_epochs, loss.item()))
+    p = torch.tensor(p)
+    if torch.cuda.is_available():
+        model = model.cuda()
+        p = p.cuda()
 
-# plot and save trained encoder weights
-temp = model.encoder[0].weight
-temp = temp.view(temp.size(0), 1, 28, 28)
-for point in range(temp.size(0)):
-    pyplot.figure(point)
-    pyplot.imshow(temp[point].cpu().detach().numpy().squeeze(), cmap='gray_r')
-    pyplot.axis('off')
-    pyplot.savefig('{}/feature_{}.png'.format(test_path, point + 1))
-    pyplot.close("all")
+    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=1e-5)
 
-# plot and save training loss
-pyplot.figure(1)
-pyplot.plot(scaled_epoch,trainloss)
-pyplot.legend(['loss'], loc='upper right')
-pyplot.xlabel('Number of Epochs')
-pyplot.savefig('{}/train_loss.png'.format(test_path))
-#pyplot.show()
+    transform = transforms.Compose([transforms.ToTensor()]) #convert to tensor
+    train_set = datasets.MNIST(root=root, train=True, transform=transform, download=True) 
+    train_loader = torch.utils.data.DataLoader(dataset=train_set, batch_size=batch_size, shuffle=True)
 
-#torch.save(model.state_dict(), './mnist_sae.pth')   # saves model as .pth file
+    num_points = math.ceil(60000/batch_size)*num_epochs #number of epochs X number of batches
+    trainloss = numpy.zeros(num_points)
+    scaled_epoch = numpy.arange(0, num_epochs, num_epochs/num_points)
+    point_count = 0
+
+    for epoch in range(num_epochs):
+        for data in train_loader:
+            img, _ = data
+            img = img.view(img.size(0), -1) #matrix rows are different inputs
+            img = Variable(img)
+            if torch.cuda.is_available():
+                img = img.cuda()
+
+            # Forward Path
+            out, hid = model(img)
+            mse = torch.mean(img.sub(out)**2) #mean squared error
+            l1 = torch.mean(torch.mean(hid.abs(), dim=0, keepdim=True)) #l1 regularization   
+            rh = torch.mean(hid, dim=0, keepdim=True) #expectations for KL divergence
+            kldiv = torch.sum(p*torch.log(torch.div(p,rh))) + torch.sum((1-p)*torch.log(torch.div((1-p),(1-rh)))) #KL divergences
+            #loss = mse + alpha*l1
+            loss = mse + beta*kldiv
+
+            # Backward Path
+            optimizer.zero_grad() #need to reset optimizer values
+            loss.backward()
+            optimizer.step()
+
+            trainloss[point_count] = loss.item() #store loss values for later
+            point_count = point_count + 1
+            
+        print('[{}/{}]:  loss:{:.4f}'.format(epoch + 1, num_epochs, loss.item()))
+
+    # plot and save trained encoder weights
+    temp = model.encoder[0].weight
+    temp = temp.view(temp.size(0), 1, 28, 28)
+    for point in range(temp.size(0)):
+        pyplot.figure(point)
+        pyplot.imshow(temp[point].cpu().detach().numpy().squeeze(), cmap='gray_r')
+        pyplot.axis('off')
+        #pyplot.savefig('{}/feature_{}.png'.format(test_path, point + 1))
+        pyplot.close("all")
+
+    pyplot.figure(1) #plot and save training loss
+    pyplot.plot(scaled_epoch,trainloss)
+    pyplot.legend(['loss'], loc='upper right')
+    pyplot.xlabel('Number of Epochs')
+    pyplot.savefig('{}/train_loss.png'.format(test_path))
+    #pyplot.show()
+
+    checkpoint = { #saves model as .pth file
+        'model': model,
+        'state_dict': model.state_dict(),
+        'optimizer' : optimizer.state_dict()}
+
+    torch.save(checkpoint, '{}/sae_{}.pth.tar'.format(test_path, epoch + 1))
+
+if __name__ == "__main__":
+    main()
 
