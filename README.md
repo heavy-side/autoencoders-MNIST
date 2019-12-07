@@ -42,7 +42,6 @@ An alternative method to prevent the network from learning to copy with input wi
 
 <p align="center">
   <br />
-  <br />
   <img width="350" height="197" src="/images/sae_study.png">
   <br />
   <br />
@@ -61,7 +60,6 @@ Adding noise to the input while teaching the network to reconstruct the original
 - Variational Autoencoders
 - Contractive autoencoders
 
-<br />
 <br />
 
 #### References
