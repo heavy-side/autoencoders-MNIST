@@ -11,7 +11,7 @@ An autoencoder is an unsupervised learning algorithm that aims to create an outp
 <p align="center">
   <img width="550" height="415" src="/images/ae.png">
   <br />
-  <em>Figure 1 - Simple feedforward neural network as an autoencoder with <p> a single hidden layer. </em>
+  <em>Figure 1 - Simple feedforward neural network as an autoencoder with <> a single hidden layer. </em>
 </p>
 
 ### Dimensionality Reduction
@@ -22,14 +22,14 @@ An obvious constraint is to limit the number of hidden neurons. As long as the n
   <br />
   <img width="360" height="193" src="/images/svd.png">
   <br />
-  <em>Figure 2 - Singular values for MNIST training set in decreasing order. Certain values of varying energy have been chosen to study the effect of different number of hidden neurons. Energy is defined here as the sum of the square of all singular values.</em>
+  <em>Figure 2 - Singular values for MNIST training set in decreasing <br> order. Certain values of varying energy have been chosen to <br> study the effect of different number of hidden neurons. Energy <br> is defined here as the sum of the square of all singular values.</em>
   <br />
   <br />
   <br />
   <img width="600" height="211" src="/images/svd_study.png">
   <br />
   <br />
-  <em>Figure 3 - (Right) Ground truths from dataset. (Left) Autoencoder outputs with varying number of hidden neurons. Columns show examples after 1, 10, 20, and 100 epochs of training with a minibatch size of 200. Rows show examples with 9, 46, 85, and 224 hidden neurons respectively. </em>
+  <em>Figure 3 - (Right) Ground truths from dataset. (Left) Autoencoder outputs with <br> varying number of hidden neurons. Columns show examples after 1, 10, 20, <br> and 100 epochs of training with a minibatch size of 200. Rows show examples <br> with 9, 46, 85, and 224 hidden neurons respectively. </em>
   <br />
   <br />
   <br />
