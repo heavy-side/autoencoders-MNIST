@@ -9,7 +9,7 @@ An autoencoder is an unsupervised learning algorithm that aims to create an outp
 <br />
 
 <p align="center">
-  <img width="550" height="295" src="/images/ae.png">
+  <img width="550" height="415" src="/images/ae.png">
   <br />
   <em>Figure 1 - Autoencoder (Reyhane Askari)</em>
 </p>
