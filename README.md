@@ -11,7 +11,7 @@ An autoencoder is an unsupervised learning algorithm that aims to create an outp
 <p align="center">
   <img width="550" height="415" src="/images/ae.png">
   <br />
-  <em>Figure 1 - Autoencoder (Reyhane Askari)</em>
+  <em>Figure 1 - Simple feedforward neural network as an autoencoder with a single hidden layer. </em>
 </p>
 
 ### Dimensionality Reduction
