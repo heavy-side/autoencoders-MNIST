@@ -72,5 +72,6 @@ Adding noise to the input while teaching the network to reconstruct the original
 
 #### References
 [Sparse Coding (Bruno Olshausen)](/papers/Olshausen_1996.pdf)
+<br>
 [Sparse Autoencoder (Andrew Ng)](/papers/Ng_2011.pdf)
 
