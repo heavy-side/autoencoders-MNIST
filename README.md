@@ -20,12 +20,15 @@ An obvious constraint is to limit the number of hidden neurons. As long as the n
 
 <p align="center">
   <br />
+  <br />
   <img width="550" height="295" src="/images/svd.png">
   <br />
   <em>Figure 2 - Singular values for MNIST training set in decreasing order. Certain values of varying energy have been chosen to study the effect of different number of hidden neurons. Energy is defined here as the sum of the square of all singular values.</em>
   <br />
   <br />
+  <br />
   <img width="600" height="211" src="/images/svd_study.png">
+  <br />
   <br />
   <em>Figure 3 - (Right) Ground truths from dataset. (Left) Autoencoder outputs with varying number of hidden neurons. Columns show examples after 1, 10, 20, and 100 epochs of training with a minibatch size of 200. Rows show examples with 9, 46, 85, and 224 hidden neurons respectively. </em>
   <br />
@@ -41,7 +44,9 @@ An alternative method to prevent the network from learning to copy with input wi
 
 <p align="center">
   <br />
-  <img width="500" height="281" src="/images/sae_study.png">
+  <br />
+  <img width="350" height="197" src="/images/sae_study.png">
+  <br />
   <br />
   <em>Figure 4 - (Row 1) Regular autoencoder weights without sparsity constraint. (Row 2) Sparse autoencoder with L1 constraint. (Row 3) Sparse autoencoder with KL Divergence constraint. Networks shown after 100 epochs of training with minibatch size of 200. </em>
   <br />
