@@ -68,6 +68,3 @@ Sparsity can be enforced by constraining the average activations of the hidden n
 
 
 #### References
- - [Multilayer Perceptrons](https://pdfs.semanticscholar.org/7b79/cccc8de41d76a2ca20eacc3d39f7b45bff5f.pdf)
- - [Andrew Ng's Notes on Autoencoders](https://web.stanford.edu/class/cs294a/sparseAutoencoder_2011new.pdf)
- - [Reyhane Askari's Notes on Autoencoders](https://reyhaneaskari.github.io/AE.htm)
