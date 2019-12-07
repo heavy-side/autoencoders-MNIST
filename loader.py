@@ -12,6 +12,9 @@ import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 import matplotlib.pyplot as pyplot
 
+#device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+#print(device)
+
 root = './data'
 if not os.path.exists(root):
 	os.mkdir(root)
@@ -39,7 +42,7 @@ num_image, num_label = dataiter.next()
 print('==>>> MNIST image batch shape:', num_image.shape)
 print('==>>> MNIST label batch shape:', num_label.shape)
 
-if 1: # example image from MNIST 
+if 0: # example image from MNIST 
 	pyplot.imshow(num_image[0].numpy().squeeze(), cmap='gray_r')
 	pyplot.axis('off')
 	pyplot.show()
