@@ -34,7 +34,7 @@ An obvious constraint is to limit the number of hidden neurons. As long as the n
   <br />
 </p>
 
-A SVD is performed on the MNIST training set, and the singular values are shown in **Figure 2**. Note that this is shown on a log scale because the singular values become increasingly small. A useful rule of thumb is to retain enough singular values for a percentage of the total energy in Σ, defined as the sum of the squared singular values. Different autoencoders are constructed with a varying number of neurons in the hidden layer and some visual results are shown in **Figure 3**. Increasing the number of neurons in the hidden layer causes the network to learn more features, allowing better reconstructions. However, if the number of neurons is greater than or equal to the number of input and output neurons, the network can learn to simply copy the input and pass the information through. Regularization can be employed to combat this problem and prevent overfitting to the training dataset.
+An SVD is performed on the MNIST training set, and the singular values are shown in **Figure 2**. Note that this is shown on a log scale because the singular values become increasingly small. A useful rule of thumb is to retain enough singular values for a percentage of the total energy in Σ, defined as the sum of the squared singular values. Different autoencoders are constructed with a varying number of neurons in the hidden layer and some visual results are shown in **Figure 3**. Increasing the number of neurons in the hidden layer causes the network to learn more features, allowing better reconstructions. However, if the number of neurons is greater than or equal to the number of input and output neurons, the network can learn to simply copy the input and pass the information through. Regularization can be employed to combat this problem and prevent overfitting to the training dataset.
 
 ### Sparse Learning (Sparse Autoencoder)
 
@@ -55,7 +55,13 @@ Sparsity can be enforced by constraining the average activations of the hidden n
 
 ### Denoising (DAE)
 
-### Variational Autoencoders (VAE)
+Adding noise to the input while teaching the network to reconstruct the original input allows the network to learn a representation that is more generalized. (Finish Later)
+
+<br />
+
+#### Future Work
+- Variational Autoencoders
+- Contractive autoencoders
 
 
 <br />
@@ -65,3 +71,6 @@ Sparsity can be enforced by constraining the average activations of the hidden n
 
 
 #### References
+[Sparse Coding (Bruno Olshausen)](/papers/Olshausen_1996.pdf)
+[Sparse Autoencoder (Andrew Ng)](/papers/Ng_2011.pdf)
+
