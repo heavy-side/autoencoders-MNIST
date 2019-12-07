@@ -11,7 +11,7 @@ An autoencoder is an unsupervised learning algorithm that aims to create an outp
 <p align="center">
   <img width="550" height="415" src="/images/ae.png">
   <br />
-  <em>Figure 1 - Simple feedforward neural network as an autoencoder with <> a single hidden layer. </em>
+  <em>Figure 1 - Simple feedforward neural network as an autoencoder with <br> a single hidden layer. </em>
 </p>
 
 ### Dimensionality Reduction
@@ -32,7 +32,6 @@ An obvious constraint is to limit the number of hidden neurons. As long as the n
   <em>Figure 3 - (Right) Ground truths from dataset. (Left) Autoencoder outputs with <br> varying number of hidden neurons. Columns show examples after 1, 10, 20, <br> and 100 epochs of training with a minibatch size of 200. Rows show examples <br> with 9, 46, 85, and 224 hidden neurons respectively. </em>
   <br />
   <br />
-  <br />
 </p>
 
 A SVD is performed on the MNIST training set, and the singular values are shown in **Figure 2**. Note that this is shown on a log scale because the singular values become increasingly small. A useful rule of thumb is to retain enough singular values for a percentage of the total energy in Σ, defined as the sum of the squared singular values. Different autoencoders are constructed with a varying number of neurons in the hidden layer and some visual results are shown in **Figure 3**. Increasing the number of neurons in the hidden layer causes the network to learn more features, allowing better reconstructions. However, if the number of neurons is greater than or equal to the number of input and output neurons, the network can learn to simply copy the input and pass the information through. Regularization can be employed to combat this problem and prevent overfitting to the training dataset.
@@ -47,8 +46,7 @@ An alternative method to prevent the network from learning to copy with input wi
   <img width="350" height="197" src="/images/sae_study.png">
   <br />
   <br />
-  <em>Figure 4 - (Row 1) Regular autoencoder weights without sparsity constraint. (Row 2) Sparse autoencoder with L1 constraint. (Row 3) Sparse autoencoder with KL Divergence constraint. </em>
-  <br />
+  <em>Figure 4 - (Row 1) Regular autoencoder weights without sparsity constraint. <br> (Row 2) Sparse autoencoder with L1 constraint. (Row 3) Sparse autoencoder <br> with KL Divergence constraint. </em>
   <br />
   <br />
 </p>
