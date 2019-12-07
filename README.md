@@ -20,8 +20,7 @@ An obvious constraint is to limit the number of hidden neurons. As long as the n
 
 <p align="center">
   <br />
-  <br />
-  <img width="550" height="295" src="/images/svd.png">
+  <img width="360" height="193" src="/images/svd.png">
   <br />
   <em>Figure 2 - Singular values for MNIST training set in decreasing order. Certain values of varying energy have been chosen to study the effect of different number of hidden neurons. Energy is defined here as the sum of the square of all singular values.</em>
   <br />
