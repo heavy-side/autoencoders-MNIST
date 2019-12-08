@@ -1,8 +1,6 @@
-# Neural Networks with MNIST 
+# Autoencoders with MNIST 
 
 Modified National Institute of Standards and Technology (MNIST) is a dataset of grayscale handwritten digits that have been normalized and centered on a 28x28 pixel field. The gray levels are a result of the anti-aliasing technique used by the normalization algorithm. The dataset contains a labelled training set of 60000 examples, and a labelled test set of 10000 examples. 
-
-## Autoencoders
 
 An autoencoder is an unsupervised learning algorithm that aims to create an output that is equivalent to the input. An autoencoder consists of two parts: an encoder and a decoder. The encoder maps the input to a hidden layer of neurons and the decoder reconstructs the output using the information from that hidden layer. This basic neural network structure is equivalent to a multilayer perceptron. The simplest autoencoder is a feedforward neural network with the same number of input and output neurons. The weights are initialized randomly and are trained through backpropagation with respect to some cost function. In this case, we want the output to match the input. Therefore, a good cost function will minimize the difference between the input and the output. After training, the autoencoder should have learned to map the input to the output. Placing constraints on the network can reveal the underlying structure of the unlabelled training dataset. 
 
@@ -68,16 +66,6 @@ As opposed to changing the cost function, the training set can be augmented to i
   <br />
   <br />
 </p>
-
-## Classifiers
-
-Classification is a supervised learning problem that aims to identify the correct class given an observation. To accomplish this goal, ground truth labels must be provided. During training, the network learns to associate certain inputs to specific classes. A popular convention is to have one output node corresponding to each class. These output nodes are trained to output the probability that an input belongs to a given class. In order to ensure the all the outputs form a probability distribution, the final layer is passed through a softmax function. The ground truth labels are usually one-hot-encoded to be the same shape as the output layer of the network. Labels provided with the MNIST dataset allow supervised training for classification problems.
-
-### Convolution Layers
-
-
-
-
 
 #### References
 [Autoencoder Inspiration (Dana Ballard)](/papers/Ballard_1978.pdf)
