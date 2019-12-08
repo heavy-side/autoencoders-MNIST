@@ -41,7 +41,6 @@ An alternative method to prevent the network from learning to copy with input wi
   <br />
   <img width="350" height="197" src="/images/sae_study.png">
   <br />
-  <br />
   <em>Figure 4 - (Row 1) Regular autoencoder weights without sparsity constraint. <br> (Row 2) Sparse autoencoder with L1 constraint. (Row 3) Sparse autoencoder <br> with KL Divergence constraint. </em>
   <br />
 </p>
@@ -53,7 +52,8 @@ Sparsity can be enforced by constraining the average activations of the hidden n
 As opposed to changing the cost function, the training set can be augmented to increase the robustness of the network. By providing the network with noisy data and teaching the network to reconstruct the original data without noise, the network is encouraged to learn the underlying structures within the data. As expected, the underlying features learned in denoising are similar to the features learned by the sparse autoencoder shown in **Figure 5**. Because the denoising and sparse training result in similar learned weights, the sparse autoencoder also provides robustness against noise as seen in **Figure 6**.
 
 <p align="center">
-  <img width="350" height="93" src="/images/dae_study.png">
+  <img width="350" height="93" src="/images/dae_study.png"> 
+  <br>
   <em>Figure 5 - Denoising autoencoder weights </em>
   <br />
   <br />
