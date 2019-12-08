@@ -43,6 +43,7 @@ An alternative method to prevent the network from learning to copy with input wi
   <br />
   <em>Figure 4 - (Row 1) Regular autoencoder weights without sparsity constraint. <br> (Row 2) Sparse autoencoder with L1 constraint. (Row 3) Sparse autoencoder <br> with KL Divergence constraint. </em>
   <br />
+  <br />
 </p>
 
 Sparsity can be enforced by constraining the average activations of the hidden neurons over the training set. Specifically, the activations can be averaged during training and added to the cost function in the form of a norm or KL divergence. **Figure 4** visually compares the weights of an autoencoder with and without sparsity constraints. By learning a sparse representation, hidden neuron weights show underlying structures in the data that are obscured in a normal autoencoder. Adding a sparsity constraint will regularize the cost function and prevent overfitting.
