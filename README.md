@@ -69,6 +69,15 @@ As opposed to changing the cost function, the training set can be augmented to i
   <br />
 </p>
 
+## Classifiers
+
+Classification is a supervised learning problem that aims to identify the correct class a given observation belongs to. To accomplish this goal ground truth labels must be provided for the training dataset. During training, the network learns to associate certain inputs to specific classes. A popular convention is to have one output node corresponding to each class. These output nodes are trained to output the probability that an input belongs to a given class. In order to ensure the all the outputs form a probability distribution, the final layer is passed through a softmax function. The ground truth labels are usually one-hot-encoded to be the same shape as the output layer of the network. Labels provided with the MNIST dataset allow supervised training for classification problems.
+
+### Convolution Layers
+
+
+
+
 #### References
 [Autoencoder Inspiration (Dana Ballard)](/papers/Ballard_1978.pdf)
 <br>
