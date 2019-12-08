@@ -87,4 +87,5 @@ Classification is a supervised learning problem that aims to identify the correc
 [Sparse Autoencoder (Andrew Ng)](/papers/Ng_2011.pdf)
 <br>
 [Denoising Autoencoder (Pascal Vincent)](/papers/Vincent_2008.pdf)
-
+<br>
+[Contractive Autoencoder (Salah Rifai)](/papers/Rifai_2011.pdf)
