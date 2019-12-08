@@ -12,6 +12,7 @@ An autoencoder is an unsupervised learning algorithm that aims to create an outp
   <img width="550" height="415" src="/images/ae.png">
   <br />
   <em>Figure 1 - Simple feedforward neural network as an autoencoder with <br> a single hidden layer. </em>
+  <br />
 </p>
 
 ### Dimensionality Reduction
@@ -51,19 +52,24 @@ An alternative method to prevent the network from learning to copy with input wi
 
 Sparsity can be enforced by constraining the average activations of the hidden neurons over the training set. Specifically, the activations can be averaged during training and added to the cost function in the form of a norm or KL divergence. **Figure 4** visually compares the weights of an autoencoder with and without sparsity constraints. By learning a sparse representation, hidden neuron weights show underlying structures in the data that are obscured in a normal autoencoder. Adding a sparsity constraint will regularize the cost function and prevent overfitting.
 
+### Input Contraction (CAE)
+
+Contractive autoencoders
+
+<br />
+
 ### Denoising (DAE)
+
+As opposed to changing the cost func
 
 Adding noise to the input while teaching the network to reconstruct the original input allows the network to learn a representation that is more generalized. (Finish Later)
 <br />
 
-#### Future Work
-- Variational Autoencoders
-- Contractive autoencoders
-
-<br />
 
 #### References
 [Sparse Coding (Bruno Olshausen)](/papers/Olshausen_1996.pdf)
 <br>
 [Sparse Autoencoder (Andrew Ng)](/papers/Ng_2011.pdf)
+<br>
+[Denoising Autoencoder (Pascal Vincent)](/papers/Vincent_2008.pdf)
 
