@@ -26,7 +26,6 @@ An obvious constraint is to limit the number of hidden neurons. As long as the n
   <br />
   <img width="600" height="211" src="/images/svd_study.png">
   <br />
-  <br />
   <em>Figure 3 - (Right) Ground truths from dataset. (Left) Autoencoder outputs with <br> varying number of hidden neurons. Columns show examples after 1, 10, 20, <br> and 100 epochs of training with a minibatch size of 200. Rows show examples <br> with 9, 46, 85, and 224 hidden neurons respectively. </em>
   <br />
   <br />
@@ -55,7 +54,6 @@ As opposed to changing the cost function, the training set can be augmented to i
 
 <p align="center">
   <img width="350" height="93" src="/images/dae_study.png">
-  <br />
   <em>Figure 5 - Denoising autoencoder weights </em>
   <br />
   <br />
