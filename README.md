@@ -60,6 +60,7 @@ As opposed to changing the cost function, the training set can be augmented to i
   <br />
   <br />
   <br />
+  <br />
   <img width="350" height="270" src="/images/dae_study2.png">
   <br />
   <em>Figure 6 - (Row 1) Augmented images with noise. (Row 2) Sparse <br> autoencoder reconstruction. (Row 3) Denoising autoencoder reconstruction. <br> (Row 4) Original ground truth images without noise.</em>
