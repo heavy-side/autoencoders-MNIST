@@ -32,7 +32,7 @@ class ae(nn.Module):
 def main():
 
     batch_size = 200
-    num_epochs = 20
+    num_epochs = 10
     learning_rate = 1e-3
     hidden_neurons = 144
 
@@ -81,8 +81,9 @@ def main():
 
             trainloss[point_count] = loss.item() #store loss values for later
             point_count = point_count + 1
-            
-        print('[{}/{}]:  loss:{:.4f}'.format(epoch + 1, num_epochs, loss.item()))
+
+        if (epoch + 1) % 1 == 0:     
+            print('[{}/{}]:  loss:{:.4f}'.format(epoch + 1, num_epochs, loss.item()))
 
     pyplot.figure(1) #plot and save training loss
     pyplot.plot(scaled_epoch,trainloss)
@@ -109,7 +110,7 @@ def main():
         'state_dict': model.state_dict(),
         'optimizer' : optimizer.state_dict()}
 
-    torch.save(checkpoint, '{}/ae_{}.pth.tar'.format(test_path, epoch + 1))
+    torch.save(checkpoint, '{}/ae.pth.tar'.format(test_path))
 
 if __name__ == "__main__":
     main()

@@ -1,7 +1,7 @@
 # Alan Cao
-# December 6, 2019
+# December 7, 2019
 
-# MNIST sparse autoencoder for feature extraction
+# MNIST autoencoder for dimensional reduction
 
 import os
 import numpy
@@ -13,9 +13,9 @@ import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 import matplotlib.pyplot as pyplot
 
-class sae(nn.Module):
+class dae(nn.Module):
     def __init__(self, inputs, hidden):
-        super(sae, self).__init__()
+        super(dae, self).__init__()
 
         self.encoder = nn.Sequential(
             nn.Linear(inputs, hidden),
@@ -29,31 +29,32 @@ class sae(nn.Module):
         decoded = self.decoder(encoded)
         return decoded, encoded
 
+def add_noise(img, factor):
+    noise = torch.randn(img.size()) * factor
+    noisy_img = img + noise
+    return noisy_img
+
 def main():
 
     batch_size = 200
     num_epochs = 10
     learning_rate = 1e-3
     hidden_neurons = 300
-    alpha = 0.01 #normalization effect
-    beta = 0.0002 #0.001 #kl divergence effect
-    p = 0.02 #sparsity parameter   
+    noise_factor = 0.7
 
-    test_path = './sae'
+    test_path = './dae'
     root = './data'
 
-    model = sae(28*28, hidden_neurons)
+    model = dae(28*28, hidden_neurons)
 
     if not os.path.exists(test_path):
         os.mkdir(test_path)
 
     if not os.path.exists(root):
         os.mkdir(root)
-        
-    p = torch.tensor(p)
+
     if torch.cuda.is_available():
         model = model.cuda()
-        p = p.cuda()
 
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=1e-5)
 
@@ -70,18 +71,17 @@ def main():
         for data in train_loader:
             img, _ = data
             img = img.view(img.size(0), -1) #matrix rows are different inputs
+            nimg = add_noise(img, noise_factor)
+            nimg = Variable(nimg)
             img = Variable(img)
             if torch.cuda.is_available():
                 img = img.cuda()
+                nimg = nimg.cuda()
 
             # Forward Path
-            out, hid = model(img)
+            out, hid = model(nimg)
             mse = torch.mean(img.sub(out)**2) #mean squared error
-            l1 = torch.mean(torch.mean(hid.abs(), dim=0, keepdim=True)) #l1 regularization   
-            rh = torch.mean(hid, dim=0, keepdim=True) #expectations for KL divergence
-            kldiv = torch.sum(p*torch.log(torch.div(p,rh))) + torch.sum((1-p)*torch.log(torch.div((1-p),(1-rh)))) #KL divergences
-            #loss = mse + alpha*l1
-            loss = mse + beta*kldiv
+            loss = mse
 
             # Backward Path
             optimizer.zero_grad() #need to reset optimizer values
@@ -91,18 +91,8 @@ def main():
             trainloss[point_count] = loss.item() #store loss values for later
             point_count = point_count + 1
 
-        if (epoch + 1) % 1 == 0:     
+        if (epoch + 1) % 1 == 0:    
             print('[{}/{}]:  loss:{:.4f}'.format(epoch + 1, num_epochs, loss.item()))
-
-    # plot and save trained encoder weights
-    temp = model.encoder[0].weight
-    temp = temp.view(temp.size(0), 1, 28, 28)
-    for point in range(temp.size(0)):
-        pyplot.figure(point)
-        pyplot.imshow(temp[point].cpu().detach().numpy().squeeze(), cmap='gray_r')
-        pyplot.axis('off')
-        #pyplot.savefig('{}/feature_{}.png'.format(test_path, point + 1)) #saving weights
-        pyplot.close("all")
 
     pyplot.figure(1) #plot and save training loss
     pyplot.plot(scaled_epoch,trainloss)
@@ -111,13 +101,26 @@ def main():
     pyplot.savefig('{}/train_loss.png'.format(test_path))
     #pyplot.show()
 
-    checkpoint = { #saves model as .pth file
+    pyplot.figure(2) #plot and save first input of final batch
+    img = img.view(img.size(0), 1, 28, 28)
+    pyplot.imshow(img[0].cpu().numpy().squeeze(), cmap='gray_r')
+    pyplot.axis('off')
+    #pyplot.savefig('{}/iput_e{}.png'.format(test_path, epoch + 1))
+
+    pyplot.figure(3) #plot and save first output of final batch
+    out = out.view(img.size(0), 1, 28, 28)
+    pyplot.imshow(out[0].cpu().detach().numpy().squeeze(), cmap='gray_r')
+    pyplot.axis('off')
+    #pyplot.savefig('{}/oput_e{}.png'.format(test_path, epoch + 1))
+
+    # saves model as .pth file
+    checkpoint = {
         'model': model,
         'state_dict': model.state_dict(),
         'optimizer' : optimizer.state_dict()}
 
-    torch.save(checkpoint, '{}/sae.pth.tar'.format(test_path))
+    torch.save(checkpoint, '{}/dae.pth.tar'.format(test_path))
 
 if __name__ == "__main__":
     main()
-
+    #does not run when imported
