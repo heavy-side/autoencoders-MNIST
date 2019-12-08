@@ -6,7 +6,6 @@ Modified National Institute of Standards and Technology (MNIST) is a dataset of 
 
 An autoencoder is an unsupervised learning algorithm that aims to create an output that is equivalent to the input. An autoencoder consists of two parts: an encoder and a decoder. The encoder maps the input to a hidden layer of neurons and the decoder reconstructs the output using the information from that hidden layer. This basic neural network structure is equivalent to a multilayer perceptron. The simplest autoencoder is a feedforward neural network with the same number of input and output neurons. The weights are initialized randomly and are trained through backpropagation with respect to some cost function. In this case, we want the output to match the input. Therefore, a good cost function will minimize the difference between the input and the output. After training, the autoencoder should have learned to map the input to the output. Although it seems trivial to learn this identity mapping, placing constraints on the network can reveal the underlying structure of the unlabelled training dataset. 
 
-<br />
 
 <p align="center">
   <img width="550" height="415" src="/images/ae.png">
@@ -52,21 +51,22 @@ An alternative method to prevent the network from learning to copy with input wi
 
 Sparsity can be enforced by constraining the average activations of the hidden neurons over the training set. Specifically, the activations can be averaged during training and added to the cost function in the form of a norm or KL divergence. **Figure 4** visually compares the weights of an autoencoder with and without sparsity constraints. By learning a sparse representation, hidden neuron weights show underlying structures in the data that are obscured in a normal autoencoder. Adding a sparsity constraint will regularize the cost function and prevent overfitting.
 
-### Input Contraction (CAE)
+### Denoising (Denoising Autoencoder)
 
-Contractive autoencoders
+As opposed to changing the cost function, the training set can be augmented to increase the robustness of the network. By providing the network with noisy data and teaching the network to reconstruct the original data without noise, the network is encouraged to learn the underlying structures within the data. As expected, the underlying features learned in denoising are similar to the features learned by the sparse autoencoder shown in **Figure 5**. 
 
-<br />
-
-### Denoising (DAE)
-
-As opposed to changing the cost func
-
-Adding noise to the input while teaching the network to reconstruct the original input allows the network to learn a representation that is more generalized. (Finish Later)
+<p align="center">
+  <img width="350" height="197" src="/images/dae_study.png">
+  <br />
+  <em>Figure 5 - Denoising autoencoder weights </em>
+  <br />
+</p>
 <br />
 
 
 #### References
+[Autoencoder Inspiration (Dana Ballard)](/papers/Ballard_1978.pdf)
+<br>
 [Sparse Coding (Bruno Olshausen)](/papers/Olshausen_1996.pdf)
 <br>
 [Sparse Autoencoder (Andrew Ng)](/papers/Ng_2011.pdf)
