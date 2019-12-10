@@ -50,7 +50,7 @@ Sparsity can be enforced by constraining the average activations of the hidden n
 
 ### Denoising (Denoising Autoencoder)
 
-As opposed to changing the cost function, the training set can be augmented to increase the robustness of the network. By providing the network with noisy data and teaching the network to reconstruct the original data without noise, the network is encouraged to learn the underlying structures within the data. As expected, the underlying features learned in denoising are similar to the features learned by the sparse autoencoder shown in **Figure 5**. Because the denoising and sparse training result in similar learned weights, the sparse autoencoder also provides robustness against noise as seen in **Figure 6**.
+As opposed to changing the cost function, the training set can be augmented to increase the robustness of the network. By providing the network with noisy data and teaching the network to reconstruct the original data without noise, the network is encouraged to learn the underlying structures within the data. As expected, the underlying features learned in denoising are similar to the features learned by the sparse autoencoder shown in **Figure 5**. Because the denoising and sparse training result in similar learned weights, the sparse autoencoder also provides robustness against noise as seen in **Figure 6**. All results shown are from networks with a single hidden layer. Although the Universal Approximation Theorem states that a single hidden layer is sufficient to represent any function, deep learning has shown that multiple hidden layers increase robustness and require a much smaller overall network size for the same approximation.
 
 <p align="center">
   <img width="350" height="93" src="/images/dae_study.png"> 
