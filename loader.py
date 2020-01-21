@@ -23,6 +23,9 @@ model_path = 'ae/ae.pth.tar'
 
 noise_factor = 0.5
 
+device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+print(device)
+
 checkpoint = torch.load(model_path)
 model = checkpoint['model']
 model.load_state_dict(checkpoint['state_dict'])
@@ -48,9 +51,8 @@ test_loader  = torch.utils.data.DataLoader(dataset=test_set,  batch_size=1, shuf
 dataiter = iter(test_loader)
 image, label = dataiter.next()
 noise = add_noise(image, noise_factor)
-if torch.cuda.is_available():
-	image = image.cuda()
-	noise = noise.cuda()
+image = image.to(device)
+noise = noise.to(device)
 
 image = image.view(image.size(0), -1) #matrix rows are different inputs
 noise = noise.view(image.size(0), -1)

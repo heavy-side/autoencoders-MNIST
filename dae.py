@@ -8,7 +8,7 @@ import numpy
 import torch
 import math
 from torch import nn
-from torch.autograd import Variable
+#from torch.autograd import Variable
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 import matplotlib.pyplot as pyplot
@@ -42,6 +42,9 @@ def main():
     hidden_neurons = 300
     noise_factor = 0.7
 
+    device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+    print(device)
+
     test_path = './dae'
     root = './data'
 
@@ -53,8 +56,7 @@ def main():
     if not os.path.exists(root):
         os.mkdir(root)
 
-    if torch.cuda.is_available():
-        model = model.cuda()
+    model = model.to(device)
 
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=1e-5)
 
@@ -72,11 +74,10 @@ def main():
             img, _ = data
             img = img.view(img.size(0), -1) #matrix rows are different inputs
             nimg = add_noise(img, noise_factor)
-            nimg = Variable(nimg)
-            img = Variable(img)
-            if torch.cuda.is_available():
-                img = img.cuda()
-                nimg = nimg.cuda()
+            #nimg = Variable(nimg)
+            #img = Variable(img)
+            img = img.to(device)
+            nimg = nimg.to(device)
 
             # Forward Path
             out, hid = model(nimg)

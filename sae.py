@@ -8,7 +8,7 @@ import numpy
 import torch
 import math
 from torch import nn
-from torch.autograd import Variable
+#from torch.autograd import Variable
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 import matplotlib.pyplot as pyplot
@@ -39,10 +39,14 @@ def main():
     beta = 0.0002 #0.001 #kl divergence effect
     p = 0.02 #sparsity parameter   
 
+    device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+    print(device)
+
     test_path = './sae'
     root = './data'
 
     model = sae(28*28, hidden_neurons)
+    model = model.to(device)
 
     if not os.path.exists(test_path):
         os.mkdir(test_path)
@@ -51,9 +55,7 @@ def main():
         os.mkdir(root)
         
     p = torch.tensor(p)
-    if torch.cuda.is_available():
-        model = model.cuda()
-        p = p.cuda()
+    p = p.to(device)
 
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=1e-5)
 
@@ -70,9 +72,8 @@ def main():
         for data in train_loader:
             img, _ = data
             img = img.view(img.size(0), -1) #matrix rows are different inputs
-            img = Variable(img)
-            if torch.cuda.is_available():
-                img = img.cuda()
+            #img = Variable(img)
+            img = img.to(device)
 
             # Forward Path
             out, hid = model(img)
